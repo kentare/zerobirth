@@ -1,0 +1,1 @@
+body{display:grid;place-content:center;height:100vh}body::before{content:'👶 Eline har ikke føda'}

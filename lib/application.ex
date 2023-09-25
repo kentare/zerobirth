@@ -22,14 +22,23 @@ defmodule ZeroBirthWebsite.Application do
       {Plug.Cowboy,
        scheme: :https,
        plug: ZeroBirthWebsite.Router,
-       port: 8080,
-       options: [
-         keyfile: "priv/keys/localhost.key",
-         certfile: "priv/keys/localhost.crt",
-         otp_app: :zerobirthwebsite,
-         verify: :verify_peer,
-         verify_fun: {&verify_fun_selfsigned_cert/3, []}
-       ]}
+       port: 4040,
+       stream_handlers: [
+         :cowboy_compress_h,
+         ZeroBirthWebsite.Stripheaders,
+         :cowboy_stream_h
+       ],
+       keyfile: "priv/cert/selfsigned_key.pem",
+       certfile: "priv/cert/selfsigned.pem",
+       otp_app: :zerobirthwebsite}
+      # {
+      #   Bandit,
+      #   plug: ZeroBirthWebsite.Router,
+      #   scheme: :https,
+      #   keyfile: "priv/cert/selfsigned_key.pem",
+      #   certfile: "priv/cert/selfsigned.pem",
+      #   otp_app: :zerobirthwebsite
+      # }
     ]
 
     opts = [strategy: :one_for_one, name: ZeroBirthWebsite.Supervisor]
