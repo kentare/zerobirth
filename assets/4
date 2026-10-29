@@ -1,1 +1,1 @@
-body{display:grid;place-content:center;}body::before{content:'👶 Eline har ikke føda'}
+body{display:grid;place-content:center;height:100vh;margin:0;background:#fdf2f8;font:600 3rem system-ui,sans-serif;color:#831843}body::before{content:'👶 Eline har ikke føda';animation:pulse 2s ease-in-out infinite}@keyframes pulse{50%{transform:scale(1.08)}}
